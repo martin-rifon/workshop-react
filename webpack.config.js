@@ -1,7 +1,6 @@
 'use strict';
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname + '/src',
@@ -16,37 +15,53 @@ module.exports = {
   devServer: {
     contentBase: __dirname + '/src',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['es2015', 'react', 'stage-0'] }
-        }],
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        use: [
-          ExtractTextPlugin.extract("css"),
-          "css-loader"
-        ],
+        loader: "css-loader"
       },
       {
         test: /\.(sass|scss)$/,
         use: [
-          ExtractTextPlugin.extract("css"),
           "css-loader",
           "sass-loader",
         ]
-      }
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.woff(\?.*)?$/,
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.woff2(\?.*)?$/,
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'
+      },
+      {
+        test: /\.otf(\?.*)?$/,
+        loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype'
+      },
+      {
+        test: /\.ttf(\?.*)?$/,
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.eot(\?.*)?$/,
+        loader: 'file?prefix=fonts/&name=[path][name].[ext]'
+      },
+      {
+        test: /\.svg(\?.*)?$/,
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
+      },
     ],
-  },
-  plugins: [
-    new ExtractTextPlugin({
-      filename: "[name].bundle.css",
-      allChunks: true,
-    }),
-  ],
+  }
 };
