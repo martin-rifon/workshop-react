@@ -12,12 +12,7 @@
     "browser" : true
   },
   "globals" : {
-    "__DEV__"      : false,
-    "__PROD__"     : false,
-    "__DEBUG__"    : false,
-    "__COVERAGE__" : false,
-    "__BASENAME__" : false,
-    "API_URL"      : false
+    "API_URL": false
   },
   "rules": {
     "semi" : ["error", "always"],
