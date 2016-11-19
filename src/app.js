@@ -1,4 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
 
-ReactDOM.render(<p>Workshop React</p>, document.getElementById('app'));
+class App extends React.Component {
+  render () {
+    return <Router history={browserHistory} children={routes} />;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
