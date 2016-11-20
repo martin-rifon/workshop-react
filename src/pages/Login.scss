@@ -1,0 +1,34 @@
+.login__hero {
+  text-align: center;
+  padding: 90px 90px 45px 90px;
+  background: linear-gradient(141deg, #cb2d3e 0%, #ef473a 100%);
+
+  h2 {
+    color: white;
+    font-size: 36px;
+  }
+}
+
+.login__form {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin-top: 45px;
+
+  input {
+    width: 400px;
+    line-height: 45px;
+    font-size: 20px;
+    padding: 0px 15px;
+    outline: 0px;
+  }
+
+  button {
+    color: white;
+    width: 140px;
+    font-size: 25px;
+    background: #34D2C1;
+    border: 0px;
+    cursor: pointer;
+  }
+}
