@@ -1,8 +1,13 @@
 import React from 'react';
+import Octicon from 'react-octicon';
+import './Layout.scss';
 
 const Layout = ({children}) => (
   <main>
-    <div>Header</div>
+    <header>
+      <Octicon name='clock' mega spin />
+      <h1>Foggl</h1>
+    </header>
 
     {children}
   </main>

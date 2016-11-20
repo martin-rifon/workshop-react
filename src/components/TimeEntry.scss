@@ -1,0 +1,46 @@
+.time-entry {
+  display: flex;
+  height: 50px;
+  padding: 0px 20px;
+  border-bottom: 1px solid #dadada;
+
+  .octicon-triangle-right {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    opacity: 0.5;
+  }
+
+  p {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    outline: 0px;
+  }
+
+  &__start,
+  &__end {
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 15px;
+  }
+
+  &__start {
+    background: #dadada;
+  }
+
+  &__end {
+    background: #ececec;
+  }
+
+  .octicon-x {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  &:last-child {
+    border-bottom: 0px;
+  }
+}

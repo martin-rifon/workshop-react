@@ -1,0 +1,31 @@
+.time-tracker {
+  display: flex;
+  height: 50px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.23);
+
+  input {
+    flex: 1;
+    line-height: 45px;
+    font-size: 20px;
+    padding: 0px 15px;
+    outline: 0px;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 20px;
+    background: #dadada;
+  }
+
+  button {
+    color: white;
+    width: 140px;
+    font-size: 25px;
+    background: #34D2C1;
+    border: 0px;
+    cursor: pointer;
+  }
+}
