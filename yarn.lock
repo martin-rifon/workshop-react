@@ -3860,6 +3860,10 @@ sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
 
+sec-to-min:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sec-to-min/-/sec-to-min-1.0.1.tgz#88fa7762da853ef444191c72147dd85696bc20f1"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
