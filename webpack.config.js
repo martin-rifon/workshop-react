@@ -93,5 +93,11 @@ module.exports = {
         loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
       },
     ],
-  }
+  },
+  // Define API_URL as a global constant on the project
+  plugins: [
+    new webpack.DefinePlugin({
+      'API_URL': JSON.stringify('https://foogl-api.herokuapp.com')
+    })
+  ]
 };
