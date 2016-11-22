@@ -36,6 +36,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "is-email": "^1.0.0",
+    "moment": "^2.17.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-octicon": "^2.0.0",

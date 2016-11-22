@@ -7,13 +7,17 @@ const ACTION_HANDLERS = {
   },
   [actions.GET_TIME_ENTRIES_SUCCESS]: (state, action) => {
     return { ...state, tracks: action.data.time_entries };
+  },
+  [actions.START_TRACKING_SUCCESS]: (state, action) => {
+    return { ...state, currentTrack: action.data.time_entry };
   }
 };
 
 // Reducer
 export const initialState = {
   user: null,
-  tracks: []
+  tracks: [],
+  currentTrack: null
 };
 
 export const reducer = (state = initialState, action) => {
