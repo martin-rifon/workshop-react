@@ -5,6 +5,9 @@ const ACTION_HANDLERS = {
   [actions.SIGN_IN_SUCCESS]: (state, action) => {
     return { ...state, user: action.data.user };
   },
+  [actions.GET_TIME_ENTRIES_SUCCESS]: (state, action) => {
+    return { ...state, tracks: action.data.time_entries };
+  }
 };
 
 // Reducer
