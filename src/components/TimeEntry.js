@@ -3,15 +3,24 @@ import Octicon from 'react-octicon';
 import './TimeEntry.scss';
 
 class TimeEntry extends Component {
+  renderDate (dateString) {
+    const date = new Date(dateString);
+    return date.getHours() + ':' + date.getMinutes();
+  }
+
   render () {
-    const {description} = this.props;
+    const {title, timeStart, timeEnd} = this.props;
 
     return (
       <li className='time-entry'>
         <Octicon name='triangle-right' />
-        <p contentEditable>{description}</p>
-        <div className='time-entry__start'>00:01 PM</div>
-        <div className='time-entry__end'>00:02 PM</div>
+        <p contentEditable>{title}</p>
+        <div className='time-entry__start'>
+          { timeStart ? this.renderDate(timeStart) : '-:-' }
+        </div>
+        <div className='time-entry__end'>
+          { timeEnd ? this.renderDate(timeEnd) : '-:-' }
+        </div>
         <Octicon name='x' />
       </li>
     );
@@ -19,7 +28,9 @@ class TimeEntry extends Component {
 };
 
 TimeEntry.propTypes = {
-  description: React.PropTypes.string
+  title: React.PropTypes.string,
+  timeStart: React.PropTypes.string,
+  timeEnd: React.PropTypes.string
 };
 
 export default TimeEntry;
