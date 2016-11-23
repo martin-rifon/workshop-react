@@ -6,7 +6,7 @@ const Layout = ({children}) => (
   <main>
     <header>
       <Octicon name='clock' mega spin />
-      <h1>Foggl</h1>
+      <h1>Foogl</h1>
     </header>
 
     {children}
