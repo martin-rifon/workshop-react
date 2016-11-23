@@ -7,7 +7,7 @@ const Layout = ({user, children}) => (
   <main>
     <header>
       <Octicon name='clock' mega spin />
-      <h1>Foggl</h1>
+      <h1>Foogl</h1>
       {user && <span>Hi {user.email}!</span>}
     </header>
 
