@@ -10,6 +10,13 @@ const ACTION_HANDLERS = {
   },
   [actions.START_TRACKING_SUCCESS]: (state, action) => {
     return { ...state, currentTrack: action.data.time_entry };
+  },
+  [actions.STOP_TRACKING_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      tracks: state.tracks.concat([action.data.time_entry]),
+      currentTrack: null
+    };
   }
 };
 

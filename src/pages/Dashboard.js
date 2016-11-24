@@ -20,7 +20,7 @@ class Dashboard extends Component {
         key={track.id}
         title={track.title}
         timeStart={track.time_start}
-        timeEnd={track.timeEnd} />
+        timeEnd={track.time_end} />
     ));
 
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
-import { startTracking } from '../store/actions';
+import { startTracking, stopTracking } from '../store/actions';
 import './TimeTracker.scss';
 
 class TimeTracker extends Component {
@@ -35,6 +35,9 @@ class TimeTracker extends Component {
   stopTimer () {
     this.setState({ running: false, timer: 0 });
 
+    this.props.stopTracking(this.trackInput.value, moment().format());
+    this.trackInput.value = '';
+
     clearInterval(this.timerInterval);
   }
 
@@ -53,9 +56,10 @@ class TimeTracker extends Component {
 };
 
 TimeTracker.propTypes = {
-  startTracking: React.PropTypes.func.isRequired
+  startTracking: React.PropTypes.func.isRequired,
+  stopTracking: React.PropTypes.func.isRequired
 };
 
-const mapActionCreators = { startTracking };
+const mapActionCreators = { startTracking, stopTracking };
 
 export default connect(null, mapActionCreators)(TimeTracker);

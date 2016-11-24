@@ -7,6 +7,8 @@ export const GET_TIME_ENTRIES_SUCCESS = 'GET_TIME_ENTRIES_SUCCESS';
 export const GET_TIME_ENTRIES_FAILURE = 'GET_TIME_ENTRIES_FAILURE';
 export const START_TRACKING_SUCCESS = 'START_TRACKING_SUCCESS';
 export const START_TRACKING_FAILURE = 'START_TRACKING_FAILURE';
+export const STOP_TRACKING_SUCCESS = 'STOP_TRACKING_SUCCESS';
+export const STOP_TRACKING_FAILURE = 'STOP_TRACKING_FAILURE';
 
 // Action creators
 export const signUp = (email) => {
@@ -54,11 +56,31 @@ export const startTracking = (title, timeStart) => {
   };
 };
 
+export const stopTracking = (title, timeEnd) => {
+  return (dispatch, getState) => {
+    fetch(API_URL + '/time_entries/' + getState().currentTrack.id, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title,
+        user_id: getState().user.id,
+        time_end: timeEnd
+      })
+    })
+    .then(data => data.json())
+    .then(
+      data => dispatch({ type: STOP_TRACKING_SUCCESS, data }),
+      err => dispatch({ type: STOP_TRACKING_FAILURE, err })
+    );
+  };
+};
+
 export default {
   SIGN_IN_SUCCESS,
   SIGN_IN_FAILURE,
   GET_TIME_ENTRIES_SUCCESS,
   GET_TIME_ENTRIES_FAILURE,
   START_TRACKING_SUCCESS,
-  START_TRACKING_FAILURE
+  START_TRACKING_FAILURE,
+  STOP_TRACKING_SUCCESS,
+  STOP_TRACKING_FAILURE
 };
