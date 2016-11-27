@@ -1,0 +1,16 @@
+.time-entry-form {
+    padding-bottom: 5em;
+
+    .task-name-input, .task-time-input, .task-start-button {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .task-name-input {
+        padding-left: 0.5em;
+    }
+
+    .task-time-input {
+        text-align: center;
+    }
+}
