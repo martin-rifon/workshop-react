@@ -5,8 +5,8 @@ import ProjectEntry from "./../ProjectEntry/ProjectEntry.js";
 
 class ProjectEntryList extends Component {
 
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
 
       this.state = {
           projects: [
@@ -30,7 +30,17 @@ class ProjectEntryList extends Component {
       };
   }
 
+  renderProjectEntry(projectEntry) {
+    return (
+      <ProjectEntry
+        entry={projectEntry}
+        key={projectEntry.id} />
+    );
+  }
+
   render () {
+    const projectEntries = this.state.projects.map(this.renderProjectEntry);
+
     return (
         <div className="project-entry-list">
             <Col
@@ -43,16 +53,7 @@ class ProjectEntryList extends Component {
                       <th>Name</th>
                       <th>Owner</th>
                     </thead>
-                    <tbody>
-                        {
-                            this.state.projects.map(
-                                (project) =>
-                                <ProjectEntry
-                                  entry={project}
-                                  key={project.id} />
-                            )
-                        }
-                    </tbody>
+                    <tbody>{projectEntries}</tbody>
                 </Table>
             </Col>
         </div>

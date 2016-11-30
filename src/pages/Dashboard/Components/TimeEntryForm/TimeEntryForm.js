@@ -4,11 +4,6 @@ import { Col, Button, FormGroup, FormControl } from 'react-bootstrap';
 import "./TimeEntryForm.scss";
 
 class TimeEntryForm extends Component {
-
-  constructor() {
-      super();
-  }
-
   render () {
     return (
         <div className="time-entry-form">

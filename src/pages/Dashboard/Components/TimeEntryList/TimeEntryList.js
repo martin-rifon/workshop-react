@@ -6,11 +6,11 @@ import "./TimeEntryList.scss";
 
 class TimeEntryList extends Component {
 
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
 
       this.state = {
-          time_entries: [
+          timeEntries: [
               {
                 id: 1,
                 label: "Track #1",
@@ -50,7 +50,20 @@ class TimeEntryList extends Component {
       };
   }
 
+  renderTimeEntry(timeEntry) {
+    return (
+      <tr key={timeEntry.id}>
+          <td className="time-entry-row">
+              <TimeEntry entry={timeEntry} />
+          </td>
+      </tr>
+    );
+  }
+
   render () {
+    const {timeEntries} = this.state;
+    const renderedTimeEntries = timeEntries.map(this.renderTimeEntry);
+
     return (
         <div className="time-entry-list">
             <Col
@@ -65,18 +78,7 @@ class TimeEntryList extends Component {
                 mdOffset={1}
                 className="no-padding">
                 <Table responsive striped hover className="full-width">
-                    <tbody>
-                        {
-                            this.state.time_entries.map(
-                                (timeEntry) =>
-                                <tr key={timeEntry.id}>
-                                    <td className="time-entry-row">
-                                        <TimeEntry entry={timeEntry} />
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
+                    <tbody>{renderedTimeEntries}</tbody>
                 </Table>
             </Col>
         </div>
