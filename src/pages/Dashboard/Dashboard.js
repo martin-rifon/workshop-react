@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TimeEntryForm from './Components/TimeEntryForm/TimeEntryForm.js';
+import TimeEntryFormContainer from './Containers/TimeEntryFormContainer.js';
 import TimeEntryList from './Components/TimeEntryList/TimeEntryList.js';
 import './Dashboard.scss';
 
@@ -9,7 +9,7 @@ class Dashboard extends Component {
     return (
         <div className="dashboard">
             <h1 className="dashboard-header">Start tracking!</h1>
-            <TimeEntryForm />
+            <TimeEntryFormContainer />
             <TimeEntryList />
         </div>
     );

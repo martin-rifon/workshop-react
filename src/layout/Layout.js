@@ -7,24 +7,31 @@ import './Layout.scss';
 import { Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import Icon from 'react-fa';
+import { Link } from 'react-router';
 
 const Layout = ({children}) => (
   <main>
     <Navbar inverse collapseOnSelect className="layout-header">
         <Navbar.Header>
           <Navbar.Brand>
-            <Icon
-              spin
-              name='clock-o'
-            />
-            <span className="logo-text">Foogl</span>
+            <Link to="/dashboard">
+              <Icon
+                spin
+                name='clock-o'
+              />
+              <span className="logo-text">Foogl</span>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>
           <Nav>
-            <NavItem>Projects</NavItem>
+            <NavItem>
+              <Link to="/projects">
+                Projects
+              </Link>
+            </NavItem>
           </Nav>
 
           <Nav pullRight>

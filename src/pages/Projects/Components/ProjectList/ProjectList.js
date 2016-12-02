@@ -2,34 +2,9 @@ import React, { Component } from 'react';
 
 import { Col, Table } from 'react-bootstrap';
 import ProjectEntry from "./../ProjectEntry/ProjectEntry.js";
+import { connect } from 'react-redux';
 
 class ProjectEntryList extends Component {
-
-  constructor(props) {
-      super(props);
-
-      this.state = {
-          projects: [
-              {
-                id: 1,
-                name: 'Project #1',
-                creator: {
-                  'id': 2,
-                  'name': 'John'
-                }
-              },
-              {
-                id: 46,
-                name: 'Project #23',
-                creator: {
-                  'id': 5,
-                  'name': 'Jane'
-                }
-              }
-          ]
-      };
-  }
-
   renderProjectEntry(projectEntry) {
     return (
       <ProjectEntry
@@ -39,7 +14,7 @@ class ProjectEntryList extends Component {
   }
 
   render () {
-    const projectEntries = this.state.projects.map(this.renderProjectEntry);
+    const projectEntries = this.props.projects.map(this.renderProjectEntry);
 
     return (
         <div className="project-entry-list">
@@ -61,4 +36,8 @@ class ProjectEntryList extends Component {
   }
 };
 
-export default ProjectEntryList;
+function mapStateToProps(state) {
+  return { projects: state.projects }
+}
+
+export default connect(mapStateToProps)(ProjectEntryList);
