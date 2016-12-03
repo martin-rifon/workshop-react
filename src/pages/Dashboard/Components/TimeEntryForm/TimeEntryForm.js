@@ -14,8 +14,7 @@ class TimeEntryForm extends Component {
       this.state = {
         running: false,
         seconds: 0,
-        start: null,
-        end: null
+        start: null
       }
   }
 
@@ -44,7 +43,7 @@ class TimeEntryForm extends Component {
   stopTimer() {
     clearTimeout(this.timeoutObject);
 
-    const end = moment(this.state.start).add(this.state.seconds, 's');
+    const end = moment();
     this.setState({
       running: false,
       end
@@ -52,7 +51,7 @@ class TimeEntryForm extends Component {
 
     this.props.createTimeEntry({
       start: this.state.start,
-      end: end,
+      end,
       projectName: ReactDOM.findDOMNode(this.refs.projectName).value,
       taskName: ReactDOM.findDOMNode(this.refs.taskName).value
     });

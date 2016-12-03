@@ -6,7 +6,13 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import foogl from './reducers';
 
-const store = createStore(foogl);
+const initialState = {
+  loggedUser: {},
+  timeEntries: [],
+  projects: []
+};
+
+const store = createStore(foogl, initialState);
 
 class App extends React.Component {
   render () {
@@ -18,7 +24,4 @@ class App extends React.Component {
   }
 }
 
-const render = () => ReactDOM.render(<App />, document.getElementById('app'));
-
-render();
-store.subscribe(render);
+ReactDOM.render(<App />, document.getElementById('app'));
