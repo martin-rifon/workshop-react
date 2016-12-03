@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import { connect } from 'react-redux';
+import { createTimeEntry } from '../../Actions/index';
 import { Col, Button, FormGroup, FormControl } from 'react-bootstrap';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
@@ -106,4 +108,19 @@ class TimeEntryForm extends Component {
   }
 };
 
-export default TimeEntryForm;
+// export default TimeEntryForm;
+
+const mapStateToProps = (state) => { return {} }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createTimeEntry: (timeEntry) => {
+      dispatch(createTimeEntry(timeEntry))
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TimeEntryForm);

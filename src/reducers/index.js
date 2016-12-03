@@ -1,7 +1,5 @@
 import Immutable from 'immutable';
 
-import Project from '../models/Project.js';
-
 const dateFormat = 'dddd MMMM DD YYYY, HH:mm:ss';
 
 const ACTION_HANDLERS = {
@@ -14,7 +12,10 @@ const ACTION_HANDLERS = {
               });
 
     if (!project) {
-      project = new Project(timeEntry.projectName)
+      project = {
+        name: timeEntry.projectName,
+        creator_id: 1
+      };
       state.projects.push(project);
     }
 
