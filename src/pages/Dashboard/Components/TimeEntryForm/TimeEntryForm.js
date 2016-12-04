@@ -7,6 +7,7 @@ import Select from 'react-select';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
 
+import Configuration from '../../../../configuration.js';
 import { createTimeEntry, findOrCreateProjectByName } from '../../Actions/index';
 
 import 'react-select/dist/react-select.css';
@@ -138,6 +139,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createTimeEntry: (timeEntry) => {
+      timeEntry.start = timeEntry.start.format(Configuration.dateFormat);
+      timeEntry.end = timeEntry.end.format(Configuration.dateFormat);
       dispatch(createTimeEntry(timeEntry));
     }
   }
