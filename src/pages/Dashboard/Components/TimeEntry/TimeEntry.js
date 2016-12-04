@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
 import {Col} from 'react-bootstrap';
 import './TimeEntry.scss';
 
@@ -13,7 +14,7 @@ class TimeEntry extends Component {
             </Col>
 
             <Col md={2} className="time-entry-start inherit-padding">
-                {this.props.entry.project.name}
+                {this.props.project.name}
             </Col>
 
             <Col md={2} className="time-entry-start inherit-padding">
@@ -28,4 +29,10 @@ class TimeEntry extends Component {
   }
 };
 
-export default TimeEntry;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    project: state.projects.find((project) => { return ownProps.entry.projectId == project.id })
+  };
+}
+
+export default connect(mapStateToProps)(TimeEntry);
