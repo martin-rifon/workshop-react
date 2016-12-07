@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import foogl from './reducers';
 
 const initialState = {
-  loggedUser: {},
+  loggedUser: null,
   timeEntries: [],
   projects: [
     {id: 0, name: 'Default project'},

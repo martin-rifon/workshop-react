@@ -1,51 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './bootstrap.min.css';
 import './utils.scss';
 import './Layout.scss';
 
 import { Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import Icon from 'react-fa';
 import { Link } from 'react-router';
 
-const Layout = ({children}) => (
-  <main>
-    <Navbar inverse collapseOnSelect className="layout-header">
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/dashboard">
-              <Icon
-                spin
-                name='clock-o'
-              />
-              <span className="logo-text">Foogl</span>
-            </Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
+class Layout extends Component {
+  render() {
+    const {loggedUser} = this.props;
+    const greeting = loggedUser ? `Hi! ${loggedUser.email}` : 'Hi! guest';
 
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem>
-              <Link to="/projects">
-                Projects
+    return (
+      <main>
+        <Navbar inverse collapseOnSelect className="layout-header">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/dashboard">
+                <Icon
+                  spin
+                  name='clock-o'
+                />
+                <span className="logo-text">Foogl</span>
               </Link>
-            </NavItem>
-          </Nav>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
 
-          <Nav pullRight>
-            <NavItem>Hi! user</NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem>
+                <Link to="/projects">
+                  Projects
+                </Link>
+              </NavItem>
+            </Nav>
 
-    {children}
-  </main>
-);
+            <Nav pullRight>
+              <NavItem>{greeting}</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        {this.props.children}
+      </main>
+    )
+  }
+};
 
 Layout.propTypes = {
   children: React.PropTypes.node.isRequired
 };
 
-export default Layout;
+function mapStateToProps(state) {
+  return { loggedUser: state.loggedUser }
+}
+
+export default connect(mapStateToProps)(Layout);
