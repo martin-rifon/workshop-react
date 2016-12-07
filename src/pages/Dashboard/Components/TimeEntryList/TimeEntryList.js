@@ -2,54 +2,10 @@ import React, { Component } from 'react';
 
 import { Col, Table } from 'react-bootstrap';
 import TimeEntry from "./../TimeEntry/TimeEntry.js";
+import { connect } from 'react-redux';
 import "./TimeEntryList.scss";
 
 class TimeEntryList extends Component {
-
-  constructor(props) {
-      super(props);
-
-      this.state = {
-          timeEntries: [
-              {
-                id: 1,
-                label: "Track #1",
-                start: "00:01",
-                end: "00:02",
-                project: { name: 'Project #1' }
-              },
-              {
-                id: 2,
-                label: "Track #2",
-                start: "00:01",
-                end: "00:02",
-                project: { name: 'Project #1' }
-              },
-              {
-                id: 3,
-                label: "Track #3",
-                start: "00:01",
-                end: "00:02",
-                project: { name: 'Project #23' }
-              },
-              {
-                id: 4,
-                label: "Track #4",
-                start: "00:01",
-                end: "00:02",
-                project: { name: 'Project #23' }
-              },
-              {
-                id: 5,
-                label: "Track #5",
-                start: "00:01",
-                end: "00:02",
-                project: { name: 'Project #23' }
-              }
-          ]
-      };
-  }
-
   renderTimeEntry(timeEntry) {
     return (
       <tr key={timeEntry.id}>
@@ -61,7 +17,7 @@ class TimeEntryList extends Component {
   }
 
   render () {
-    const {timeEntries} = this.state;
+    const {timeEntries} = this.props;
     const renderedTimeEntries = timeEntries.map(this.renderTimeEntry);
 
     return (
@@ -86,4 +42,8 @@ class TimeEntryList extends Component {
   }
 };
 
-export default TimeEntryList;
+function mapStateToProps(state) {
+  return { timeEntries: state.timeEntries }
+}
+
+export default connect(mapStateToProps)(TimeEntryList);

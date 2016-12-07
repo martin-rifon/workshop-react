@@ -24,7 +24,7 @@ class ProjectEntry extends Component {
 
         <td>
           <Col md={5} className="inherit-padding">
-              {entry.creator.name}
+              {entry.creator_id}
           </Col>
         </td>
       </tr>

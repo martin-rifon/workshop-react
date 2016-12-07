@@ -2,10 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import foogl from './reducers';
+
+const initialState = {
+  loggedUser: {},
+  timeEntries: [],
+  projects: [
+    {id: 0, name: 'Default project'},
+    {id: 1, name: 'Project #1'},
+    {id: 2, name: 'Project #2'}
+  ]
+};
+
+const store = createStore(foogl, initialState, applyMiddleware(thunk));
 
 class App extends React.Component {
   render () {
-    return <Router history={browserHistory} children={routes} />;
+    return (
+      <Provider store={store}>
+        <Router history={browserHistory} children={routes} />
+      </Provider>
+    )
   }
 }
 
