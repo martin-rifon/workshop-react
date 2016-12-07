@@ -7,7 +7,6 @@ import Select from 'react-select';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
 
-import Configuration from '../../../../configuration.js';
 import { createTimeEntry, findOrCreateProjectByName } from '../../Actions/index';
 
 import 'react-select/dist/react-select.css';
@@ -58,11 +57,10 @@ class TimeEntryForm extends Component {
     });
 
     this.props.createTimeEntry({
-      start: this.state.start.format(Configuration.dateFormat),
-      end: end.format(Configuration.dateFormat),
+      start: this.state.start.format(),
+      end: end.format(),
       projectId: this.state.projectId,
-      taskName: this.taskNameInput.value
-      // taskName: ReactDOM.findDOMNode(this.taskName).value
+      taskName: ReactDOM.findDOMNode(this.refs.taskNameInput).value
     });
   }
 
@@ -88,8 +86,7 @@ class TimeEntryForm extends Component {
                 <FormControl
                   type="text"
                   placeholder="Task name"
-                  ref={ (control) => { this.taskNameInput = control; } }
-                  // ref={ (control) => { this.taskName = control; } }
+                  ref="taskNameInput"
                   className="task-name-input" />
               </FormGroup>
             </Col>
@@ -138,15 +135,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     createTimeEntry: (timeEntry) => {
-//       timeEntry.start = timeEntry.start.format(Configuration.dateFormat);
-//       timeEntry.end = timeEntry.end.format(Configuration.dateFormat);
-//       dispatch(createTimeEntry(timeEntry));
-//     }
-//   }
-// }
 const mapDispatchToProps = {
   createTimeEntry
 }
