@@ -9,7 +9,7 @@ const routes = (
   <Route path='/' component={Layout}>
     <IndexRedirect to='/login' />
     <Route path='/login' component={Login} />
-    <Route path='/dashboard' component={Dashboard} />
+    <Route path='/dashboard' name="dashboard" component={Dashboard} />
     <Route path='/projects' component={Projects} />
   </Route>
 );

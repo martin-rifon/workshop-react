@@ -15,30 +15,41 @@ class Layout extends Component {
     const {loggedUser} = this.props;
     const greeting = loggedUser ? `Hi! ${loggedUser.email}` : 'Hi! guest';
 
+    let logo = (
+      <Link to={ loggedUser ? '/dashboard' : '/login' }>
+        <Icon
+          spin
+          name='clock-o'
+        />
+        <span className="logo-text">Foogl</span>
+      </Link>
+    );
+
+    let projectsLink = '';
+    if (loggedUser) {
+      projectsLink = (
+        <Nav>
+          <NavItem>
+            <Link to="/projects">
+              Projects
+            </Link>
+          </NavItem>
+        </Nav>
+      );
+    }
+
     return (
       <main>
         <Navbar inverse collapseOnSelect className="layout-header">
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/dashboard">
-                <Icon
-                  spin
-                  name='clock-o'
-                />
-                <span className="logo-text">Foogl</span>
-              </Link>
+              { logo }
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
 
           <Navbar.Collapse>
-            <Nav>
-              <NavItem>
-                <Link to="/projects">
-                  Projects
-                </Link>
-              </NavItem>
-            </Nav>
+            {projectsLink}
 
             <Nav pullRight>
               <NavItem>{greeting}</NavItem>

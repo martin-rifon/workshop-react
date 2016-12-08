@@ -7,7 +7,7 @@ import Select from 'react-select';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
 
-import { createTimeEntry, findOrCreateProjectByName } from '../../Actions/index';
+import { createTimeEntry } from '../../Actions/index';
 
 import 'react-select/dist/react-select.css';
 import "./TimeEntryForm.scss";
@@ -25,7 +25,7 @@ class TimeEntryForm extends Component {
       }
   }
 
-  toggleTimer () {
+  toggleTimer() {
     if (this.state.running) {
       this.stopTimer();
     } else {

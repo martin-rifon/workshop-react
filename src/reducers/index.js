@@ -12,6 +12,15 @@ const ACTION_HANDLERS = {
                           end: timeEntry.end
                         })
     };
+  },
+
+  'ATTEMPT_LOGIN': (state, action) => {
+    const credentials = action.credentials;
+
+    return {
+      ...state,
+      loggedUser: credentials.email
+    };
   }
 }
 

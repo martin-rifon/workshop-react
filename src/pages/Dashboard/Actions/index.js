@@ -4,10 +4,3 @@ export const createTimeEntry = (timeEntry) => {
     timeEntry
   }
 }
-
-export const findOrCreateProjectByName = (projectName) => {
-  return {
-    type: 'FIND_OR_CREATE_PROJECT_BY_NAME',
-    projectName
-  }
-}
