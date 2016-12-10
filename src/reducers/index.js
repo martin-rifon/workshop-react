@@ -1,3 +1,5 @@
+import { browserHistory } from 'react-router'
+
 const ACTION_HANDLERS = {
   'CREATE_TIME_ENTRY': (state, action) => {
     const timeEntry = action.timeEntry;
@@ -14,12 +16,30 @@ const ACTION_HANDLERS = {
     };
   },
 
-  'ATTEMPT_LOGIN': (state, action) => {
+  'DO_LOGIN': (state, action) => {
     const credentials = action.credentials;
+
+    // Check credentials here.
+    browserHistory.push('/dashboard')
 
     return {
       ...state,
-      loggedUser: credentials.email
+      loggedUser: credentials
+    };
+  },
+
+  'CREATE_PROJECT': (state, action) => {
+    const project = action.project;
+    const lastProject = state.projects[state.projects.length - 1]
+
+    return {
+      ...state,
+      projects: state.projects
+                     .concat({
+                       id: lastProject.id + 1,
+                       name: project.name,
+                       owner: state.loggedUser.email
+                     })
     };
   }
 }

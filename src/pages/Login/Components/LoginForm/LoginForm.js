@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, FormGroup, FormControl } from 'react-bootstrap';
-import { Router } from 'react-router';
+import { browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
@@ -14,10 +14,6 @@ class LoginForm extends Component {
     this.props.attemptLogin({
       email: ReactDOM.findDOMNode(this.refs.emailInput).value
     });
-
-    if (this.props.loggedUser) {
-      Router.transitionTo('dashboard');
-    }
   }
 
   render() {

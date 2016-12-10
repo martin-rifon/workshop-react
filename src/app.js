@@ -11,9 +11,7 @@ const initialState = {
   loggedUser: null,
   timeEntries: [],
   projects: [
-    {id: 0, name: 'Default project'},
-    {id: 1, name: 'Project #1'},
-    {id: 2, name: 'Project #2'}
+    { id: 0, name: 'Default project', owner: 'Default User' }
   ]
 };
 
