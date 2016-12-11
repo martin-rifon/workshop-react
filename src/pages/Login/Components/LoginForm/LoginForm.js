@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-import { attemptLogin } from '../../Actions/index';
+import { attemptLogin } from '../../../../store/actions';
 
 import './LoginForm.scss';
 

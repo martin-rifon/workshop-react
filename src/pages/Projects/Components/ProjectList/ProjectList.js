@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Col, Table, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { createProject } from '../../Actions/index';
+import { createProject } from '../../../../store/actions';
 import ProjectEntry from "./../ProjectEntry/ProjectEntry.js";
 
 class ProjectEntryList extends Component {
@@ -22,7 +22,6 @@ class ProjectEntryList extends Component {
   }
 
   render () {
-    const addProject = this.addProject.bind(this);
     const projectEntries = this.props.projects.map(this.renderProjectEntry);
 
     return (
@@ -40,7 +39,7 @@ class ProjectEntryList extends Component {
           <Button
             bsStyle="primary"
             className="add-project-button"
-            onClick={addProject}>
+            onClick={::this.addProject}>
             Add Project
           </Button>
         </Col>

@@ -20,7 +20,6 @@ const ACTION_HANDLERS = {
     const credentials = action.credentials;
 
     // Check credentials here.
-    browserHistory.push('/dashboard')
 
     return {
       ...state,
