@@ -7,7 +7,7 @@ import Select from 'react-select';
 import secToMin from 'sec-to-min';
 import moment from 'moment';
 
-import { createTimeEntry } from '../../../../store/actions';
+import { createTimeEntry } from '~/src/store/actions';
 
 import 'react-select/dist/react-select.css';
 import "./TimeEntryForm.scss";
