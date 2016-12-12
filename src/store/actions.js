@@ -43,7 +43,7 @@ export const createTimeEntry = (timeEntry) => {
 
 export const addTimeEntryToStore = (timeEntry) => {
   return {
-    type: 'ADD_TIME_ENTRY_TO_STORE',
+    type: 'ADD_TIME_ENTRY',
     timeEntry
   }
 }
@@ -139,7 +139,7 @@ export const createProject = (projectData) => {
 
 export const addProjectToStore = (project) => {
   return {
-    type: 'ADD_PROJECT_TO_STORE',
+    type: 'ADD_PROJECT',
     project
   }
 }

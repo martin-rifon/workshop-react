@@ -68,11 +68,11 @@ Layout.propTypes = {
   children: React.PropTypes.node.isRequired
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     loggedUser: state.loggedUser,
     loading: state.loading
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Layout);

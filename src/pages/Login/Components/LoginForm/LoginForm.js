@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 
-import { attemptLogin } from '../../../../store/actions';
+import { attemptLogin } from '~/src/store/actions';
 
 import './LoginForm.scss';
 
@@ -19,7 +19,6 @@ class LoginForm extends Component {
   }
 
   render() {
-    const doLogin = this.doLogin.bind(this);
     const { loading } = this.props
 
     return (
@@ -42,7 +41,7 @@ class LoginForm extends Component {
               <Button
                 bsStyle="primary"
                 className="login-button"
-                onClick={doLogin}>
+                onClick={ ::this.doLogin }>
                 Login
               </Button>
             </Col>
@@ -55,11 +54,11 @@ class LoginForm extends Component {
   }
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     loggedUser: state.loggedUser,
     loading: state.loading.loginForm
-  }
+  };
 }
 
 const mapDispatchToProps = {

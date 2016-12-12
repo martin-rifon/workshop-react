@@ -25,7 +25,7 @@ const ACTION_HANDLERS = {
     };
   },
 
-  'ADD_PROJECT_TO_STORE': (state, action) => {
+  'ADD_PROJECT': (state, action) => {
     const project = action.project;
 
     return {
@@ -35,7 +35,7 @@ const ACTION_HANDLERS = {
     };
   },
 
-  'ADD_TIME_ENTRY_TO_STORE': (state, action) => {
+  'ADD_TIME_ENTRY': (state, action) => {
     const timeEntry = action.timeEntry;
 
     return {

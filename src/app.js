@@ -21,9 +21,11 @@ const initialState = {
   errorMessage: null
 };
 
-const store = createStore(foogl,
-                          loadState() || initialState,
-                          applyMiddleware(thunk));
+const store = createStore(
+  foogl,
+  loadState() || initialState,
+  applyMiddleware(thunk)
+);
 
 window.onbeforeunload = () => {
   saveState(store.getState());
