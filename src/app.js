@@ -25,9 +25,9 @@ const store = createStore(foogl,
                           loadState() || initialState,
                           applyMiddleware(thunk));
 
-// window.onbeforeunload = () => {
-//   saveState(store.getState());
-// };
+window.onbeforeunload = () => {
+  saveState(store.getState());
+};
 
 class App extends React.Component {
   render () {
