@@ -16,29 +16,75 @@ const ACTION_HANDLERS = {
     };
   },
 
-  'DO_LOGIN': (state, action) => {
-    const credentials = action.credentials;
-
-    // Check credentials here.
+  'SET_LOGGED_USER': (state, action) => {
+    const user = action.user;
 
     return {
       ...state,
-      loggedUser: credentials
+      loggedUser: user
     };
   },
 
-  'CREATE_PROJECT': (state, action) => {
+  'ADD_PROJECT_TO_STORE': (state, action) => {
     const project = action.project;
-    const lastProject = state.projects[state.projects.length - 1]
 
     return {
       ...state,
       projects: state.projects
-                     .concat({
-                       id: lastProject.id + 1,
-                       name: project.name,
-                       owner: state.loggedUser.email
-                     })
+                     .concat(project)
+    };
+  },
+
+  'ADD_TIME_ENTRY_TO_STORE': (state, action) => {
+    const timeEntry = action.timeEntry;
+
+    return {
+      ...state,
+      timeEntries: state.timeEntries
+                        .concat(timeEntry)
+    };
+  },
+
+  'LOADING': (state, action) => {
+    const component = action.component
+    let newLoading = {}
+    newLoading[component.name] = true
+
+    return {
+      ...state,
+      loading: Object.assign({}, state.loading, newLoading)
+    }
+  },
+
+  'FINISHED_LOADING': (state, action) => {
+    const component = action.component
+    let newLoading = {}
+    newLoading[component.name] = false
+
+    return {
+      ...state,
+      loading: Object.assign({}, state.loading, newLoading)
+    }
+  },
+
+  'DISPLAY_ERROR': (state, action) => {
+    return {
+      ...state,
+      errorMessage: action.message
+    }
+  },
+
+  'SET_TIME_ENTRIES': (state, action) => {
+    return {
+      ...state,
+      timeEntries: action.timeEntries
+    };
+  },
+
+  'SET_PROJECTS': (state, action) => {
+    return {
+      ...state,
+      projects: action.projects
     };
   }
 }

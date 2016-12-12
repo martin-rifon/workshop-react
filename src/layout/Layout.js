@@ -8,11 +8,12 @@ import { Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstra
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import Icon from 'react-fa';
+import Spinner from 'react-spinkit'
 import { Link } from 'react-router';
 
 class Layout extends Component {
   render() {
-    const {loggedUser} = this.props;
+    const { loggedUser, loading } = this.props;
     const greeting = loggedUser ? `Hi! ${loggedUser.email}` : 'Hi! guest';
 
     let logo = (
@@ -68,7 +69,10 @@ Layout.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return { loggedUser: state.loggedUser }
+  return {
+    loggedUser: state.loggedUser,
+    loading: state.loading
+  }
 }
 
 export default connect(mapStateToProps)(Layout);

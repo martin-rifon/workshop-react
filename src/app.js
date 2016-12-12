@@ -11,18 +11,23 @@ import { loadState, saveState } from './store/localStorage';
 const initialState = {
   loggedUser: null,
   timeEntries: [],
-  projects: [
-    { id: 0, name: 'Default project', owner: 'Default User' }
-  ]
+  projects: [],
+  loading: {
+    loginForm: false,
+    timeEntryList: false,
+    timeEntryForm: false,
+    projectList: false
+  },
+  errorMessage: null
 };
 
 const store = createStore(foogl,
                           loadState() || initialState,
                           applyMiddleware(thunk));
 
-window.onbeforeunload = () => {
-  saveState(store.getState());
-};
+// window.onbeforeunload = () => {
+//   saveState(store.getState());
+// };
 
 class App extends React.Component {
   render () {
