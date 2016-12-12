@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 
-import { createProject } from '../../../../store/actions';
+import { createProject } from '~/src/store/actions';
 import ProjectEntry from "./../ProjectEntry/ProjectEntry.js";
 
 class ProjectEntryList extends Component {
