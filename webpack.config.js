@@ -70,11 +70,11 @@ module.exports = {
       },
       {
         test: /\.woff(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.woff2(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'
+        loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'
       },
       {
         test: /\.otf(\?.*)?$/,
@@ -82,7 +82,7 @@ module.exports = {
       },
       {
         test: /\.ttf(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'
+        loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'
       },
       {
         test: /\.eot(\?.*)?$/,
@@ -90,7 +90,7 @@ module.exports = {
       },
       {
         test: /\.svg(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
+        loader: 'url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml'
       },
     ],
   },

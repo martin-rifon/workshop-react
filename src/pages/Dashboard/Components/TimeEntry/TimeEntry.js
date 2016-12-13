@@ -10,7 +10,7 @@ class TimeEntry extends Component {
     return (
         <div className="time-entry">
             <Col md={6} className="inherit-padding">
-                {this.props.entry.label}
+                {this.props.entry.title}
             </Col>
 
             <Col md={2} className="time-entry-start inherit-padding">
@@ -18,11 +18,11 @@ class TimeEntry extends Component {
             </Col>
 
             <Col md={2} className="time-entry-start inherit-padding">
-                {this.props.entry.start}
+                {this.props.entry.time_start}
             </Col>
 
             <Col md={2} className="time-entry-end inherit-padding">
-                {this.props.entry.end}
+                {this.props.entry.time_end}
             </Col>
         </div>
     );
@@ -31,7 +31,9 @@ class TimeEntry extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    project: state.projects.find((project) => { return ownProps.entry.projectId == project.id })
+    project: state.projects.find((project) => {
+      return ownProps.entry.project_id == project.id
+    })
   };
 }
 

@@ -6,18 +6,30 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import foogl from './reducers';
+import { loadState, saveState } from './store/localStorage';
 
 const initialState = {
-  loggedUser: {},
+  loggedUser: null,
   timeEntries: [],
-  projects: [
-    {id: 0, name: 'Default project'},
-    {id: 1, name: 'Project #1'},
-    {id: 2, name: 'Project #2'}
-  ]
+  projects: [],
+  loading: {
+    loginForm: false,
+    timeEntryList: false,
+    timeEntryForm: false,
+    projectList: false
+  },
+  errorMessage: null
 };
 
-const store = createStore(foogl, initialState, applyMiddleware(thunk));
+const store = createStore(
+  foogl,
+  loadState() || initialState,
+  applyMiddleware(thunk)
+);
+
+window.onbeforeunload = () => {
+  saveState(store.getState());
+};
 
 class App extends React.Component {
   render () {

@@ -1,51 +1,78 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './bootstrap.min.css';
 import './utils.scss';
 import './Layout.scss';
 
 import { Col, Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import Icon from 'react-fa';
+import Spinner from 'react-spinkit'
 import { Link } from 'react-router';
 
-const Layout = ({children}) => (
-  <main>
-    <Navbar inverse collapseOnSelect className="layout-header">
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/dashboard">
-              <Icon
-                spin
-                name='clock-o'
-              />
-              <span className="logo-text">Foogl</span>
+class Layout extends Component {
+  render() {
+    const { loggedUser, loading } = this.props;
+    const greeting = loggedUser ? `Hi! ${loggedUser.email}` : 'Hi! guest';
+
+    let logo = (
+      <Link to={ loggedUser ? '/dashboard' : '/login' }>
+        <Icon
+          spin
+          name='clock-o'
+        />
+        <span className="logo-text">Foogl</span>
+      </Link>
+    );
+
+    let projectsLink = '';
+    if (loggedUser) {
+      projectsLink = (
+        <Nav>
+          <NavItem>
+            <Link to="/projects">
+              Projects
             </Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
+          </NavItem>
+        </Nav>
+      );
+    }
 
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem>
-              <Link to="/projects">
-                Projects
-              </Link>
-            </NavItem>
-          </Nav>
+    return (
+      <main>
+        <Navbar inverse collapseOnSelect className="layout-header">
+          <Navbar.Header>
+            <Navbar.Brand>
+              { logo }
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
 
-          <Nav pullRight>
-            <NavItem>Hi! user</NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+          <Navbar.Collapse>
+            {projectsLink}
 
-    {children}
-  </main>
-);
+            <Nav pullRight>
+              <NavItem>{greeting}</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        {this.props.children}
+      </main>
+    )
+  }
+};
 
 Layout.propTypes = {
   children: React.PropTypes.node.isRequired
 };
 
-export default Layout;
+const mapStateToProps = (state) => {
+  return {
+    loggedUser: state.loggedUser,
+    loading: state.loading
+  };
+}
+
+export default connect(mapStateToProps)(Layout);

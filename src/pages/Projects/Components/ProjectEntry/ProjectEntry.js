@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {Col} from 'react-bootstrap';
 
 class ProjectEntry extends Component {
@@ -12,19 +11,19 @@ class ProjectEntry extends Component {
       <tr className="project-entry">
         <td>
           <Col md={2} className="inherit-padding">
-              {entry.id}
+            {entry.id}
           </Col>
         </td>
 
         <td>
           <Col md={5} className="inherit-padding">
-              {entry.name}
+            {entry.name}
           </Col>
         </td>
 
         <td>
           <Col md={5} className="inherit-padding">
-              {entry.creator_id}
+            {entry.user_id}
           </Col>
         </td>
       </tr>
