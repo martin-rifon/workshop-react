@@ -45,6 +45,37 @@ const ACTION_HANDLERS = {
     };
   },
 
+  'ALTER_TIME_ENTRY': (state, action) => {
+    const timeEntry = action.timeEntry;
+    const timeEntryIndex = state.timeEntries.findIndex((elem) => (
+      elem.id == timeEntry.id
+    ));
+    const timeEntries = timeEntryIndex >= 0
+      ? state.timeEntries.slice(0).splice(timeEntryIndex + 1, 1, timeEntry)
+      : state.timeEntries
+
+    return {
+      ...state,
+      timeEntries
+    };
+  },
+
+  'REMOVE_TIME_ENTRY': (state, action) => {
+    const timeEntryId = action.timeEntryId;
+    const timeEntryIndex = state.timeEntries
+                                .findIndex(
+                                  (timeEntry) => timeEntry.id == timeEntryId
+                                )
+    const timeEntries = timeEntryIndex >= 0
+      ? state.timeEntries.slice(0).splice(timeEntryIndex + 1, 1)
+      : state.timeEntries
+
+    return {
+      ...state,
+      timeEntries
+    };
+  },
+
   'LOADING': (state, action) => {
     const component = action.component
     let newLoading = {}

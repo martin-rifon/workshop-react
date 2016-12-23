@@ -69,6 +69,37 @@ class FooglApi {
         return error;
       });
   }
+
+  static updateTimeEntry(timeEntry) {
+    const body = JSON.stringify({
+      id: timeEntry.id,
+      title: timeEntry.title,
+      user_id: timeEntry.user_id,
+      project_id: timeEntry.project_id,
+      time_start: timeEntry.time_start,
+      time_end: timeEntry.time_end
+    })
+
+    return fetch(`${API_URL}/time_entries/${timeEntry.id}`, {
+        method: 'patch',
+        body
+      })
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => {
+        return error;
+      });
+  }
+
+  static deleteTimeEntry(timeEntryId) {
+    return fetch(`${API_URL}/time_entries/${timeEntryId}`, { method: 'delete' })
+      .then(response => {
+        return response.json();
+      }).catch(error => {
+        return error;
+      });
+  }
 }
 
 export default FooglApi;

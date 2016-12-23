@@ -71,19 +71,49 @@ export const loadTimeEntries = (userId) => {
   }
 }
 
-export const loadProjects = (userId) => {
+export const updateTimeEntry = (timeEntry) => {
   return function(dispatch, getState) {
-    dispatch(loading({ name: 'projectList' }))
+    dispatch(loading({ name: 'timeEntryList' }));
 
-    return FooglApi.projects(userId)
+    return FooglApi.updateTimeEntry(timeEntry)
                    .then((response) => {
-                      dispatch(finishedLoading({ name: 'projectList' }))
-                      dispatch(setProjects(response.projects))
+                      dispatch(alterTimeEntry(timeEntry))
+                      dispatch(finishedLoading({ name: 'timeEntryList' }))
                     })
                    .catch((error) => {
-                      dispatch(finishedLoading({ name: 'projectList' }))
+                      dispatch(finishedLoading({ name: 'timeEntryList' }))
                       dispatch(displayError(error))
                     });
+  }
+}
+
+export const alterTimeEntry = (timeEntry) => {
+  return {
+    type: 'ALTER_TIME_ENTRY',
+    timeEntry
+  }
+}
+
+export const deleteTimeEntry = (timeEntryId) => {
+  return function(dispatch, getState) {
+    dispatch(loading({ name: 'timeEntryList' }));
+
+    return FooglApi.deleteTimeEntry(timeEntryId)
+                   .then((response) => {
+                      dispatch(removeTimeEntry(timeEntryId))
+                      dispatch(finishedLoading({ name: 'timeEntryList' }))
+                    })
+                   .catch((error) => {
+                      dispatch(finishedLoading({ name: 'timeEntryList' }))
+                      dispatch(displayError(error))
+                    });
+  }
+}
+
+export const removeTimeEntry = (timeEntryId) => {
+  return {
+    type: 'REMOVE_TIME_ENTRY',
+    timeEntryId
   }
 }
 
@@ -97,8 +127,8 @@ export const attemptLogin = (credentials) => {
                       dispatch(finishedLoading({ name: 'loginForm' }))
                       dispatch(setLoggedUser(response.user))
 
-                      dispatch(loadTimeEntries(response.user.id))
                       dispatch(loadProjects(response.user.id))
+                      dispatch(loadTimeEntries(response.user.id))
 
                       browserHistory.push('/dashboard')
                     })
@@ -141,6 +171,22 @@ export const addProjectToStore = (project) => {
   return {
     type: 'ADD_PROJECT',
     project
+  }
+}
+
+export const loadProjects = (userId) => {
+  return function(dispatch, getState) {
+    dispatch(loading({ name: 'projectList' }))
+
+    return FooglApi.projects(userId)
+                   .then((response) => {
+                      dispatch(finishedLoading({ name: 'projectList' }))
+                      dispatch(setProjects(response.projects))
+                    })
+                   .catch((error) => {
+                      dispatch(finishedLoading({ name: 'projectList' }))
+                      dispatch(displayError(error))
+                    });
   }
 }
 
