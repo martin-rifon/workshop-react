@@ -47,10 +47,9 @@ const ACTION_HANDLERS = {
 
   'ALTER_TIME_ENTRY': (state, action) => {
     const timeEntry = action.timeEntry;
-    const timeEntryIndex = state.timeEntries
-                                .findIndex(
-                                  (elem) => elem.id == timeEntry.id
-                                )
+    const timeEntryIndex = state.timeEntries.findIndex((elem) => (
+      elem.id == timeEntry.id
+    ));
     const timeEntries = timeEntryIndex >= 0
       ? state.timeEntries.slice(0).splice(timeEntryIndex + 1, 1, timeEntry)
       : state.timeEntries

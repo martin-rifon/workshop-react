@@ -30,15 +30,21 @@ class TimeEntry extends Component {
     this.toggleShowModal();
   }
 
+  onChange(dateString, attribute) {
+    let timeEntry = this.props.entry
+    timeEntry[attribute] = moment(dateString, 'DD-MM-YYYY HH:mm:ss').format()
+    this.props.updateTimeEntry(timeEntry)
+  }
+
   render () {
     const { showModal } = this.state;
     const toggleShowModal = ::this.toggleShowModal
     const deleteTimeEntry = ::this.deleteTimeEntry
-    const onChange = (dateString, attribute) => {
-      let timeEntry = this.props.entry
-      timeEntry[attribute] = moment(dateString, 'DD-MM-YYYY HH:mm:ss').format()
-      this.props.updateTimeEntry(timeEntry)
-    }
+    // const onChange = (dateString, attribute) => {
+    //   let timeEntry = this.props.entry
+    //   timeEntry[attribute] = moment(dateString, 'DD-MM-YYYY HH:mm:ss').format()
+    //   this.props.updateTimeEntry(timeEntry)
+    // }
 
     const editPopover = (
       <Popover title="Edit Time Entry">
